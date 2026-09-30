@@ -1,0 +1,80 @@
+# Dependencies and package-manager caches
+/node_modules/
+/.npm/
+/.pnpm-store/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Angular build output and local cache
+/dist/
+/out-tsc/
+/.angular/cache/
+/.codebase-memory/
+/coverage/
+/tmp/
+/temp/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.env.local
+*.local.env
+*.secrets.*
+*.secret
+*.pfx
+*.p12
+*.key
+*.pem
+*.cert
+*.crt
+*.jks
+*.keystore
+secrets/
+private/
+kubeconfig
+kubeconfig-*
+*.kubeconfig
+azureProfile.json
+azureauth.json
+
+# Local Azure CLI / deployment state
+.azure/
+.terraform/
+terraform.tfstate
+terraform.tfstate.*
+*.tfstate
+*.tfstate.*
+*.tfplan
+
+# Local editor state (keep shared VS Code recommendations/configuration)
+.idea/
+.history/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Local infrastructure audit; contains subscription and tenant identifiers
+/AZZU_PREPROD_AUDIT.md
+
+# Source archive is not a runtime asset; the SVG is used by the app
+/public/azzu-logo.rar
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and temporary diagnostics
+*.log
+*.stackdump
+npm-cache/
+__screenshots__/

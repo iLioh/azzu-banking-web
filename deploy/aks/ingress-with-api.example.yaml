@@ -1,0 +1,34 @@
+# Reference only. Do not add to kustomization until the real API Service and namespace
+# have been verified with kubectl. An Ingress can route only to a Service in its namespace.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: azzu-banking-web
+  namespace: azzu-web-dev
+  annotations:
+    kubernetes.io/ingress.class: webapprouting.kubernetes.azure.com
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com
+  tls:
+    - hosts:
+        - banca.azzu.tech
+      secretName: azzu-banking-web-tls
+  rules:
+    - host: banca.azzu.tech
+      http:
+        paths:
+          - path: /api/v1
+            pathType: Prefix
+            backend:
+              service:
+                # Replace after confirming the in-cluster API Service.
+                name: itforbanking-api
+                port:
+                  name: https
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: azzu-banking-web
+                port:
+                  name: http

@@ -1,0 +1,47 @@
+* { box-sizing: border-box; }
+:root {
+	--azzu-primary: #B6DB00;
+	--azzu-primary-soft: #EAF6AD;
+	--azzu-secondary: #6338EE;
+	--azzu-secondary-soft: #F1EEFF;
+	--azzu-surface: #F8FAF5;
+	--azzu-ink: #261A46;
+}
+html { background: #F8FAF5; overflow-y: scroll; scrollbar-gutter: stable; }
+body { margin: 0; min-width: 320px; font-family: Inter, "Segoe UI", Arial, sans-serif; }
+button, input, textarea, select { font: inherit; }
+:focus-visible { outline: 3px solid var(--azzu-secondary); outline-offset: 2px; }
+
+/* Streamline Ultimate Bold Free finance assets; attribution is documented in README. */
+.streamline-finance { background: currentColor; display: inline-block; height: 24px; mask: center / contain no-repeat; -webkit-mask: center / contain no-repeat; width: 24px; }
+.finance-transfer { mask-image: url('/icons/streamline/transfer.svg'); -webkit-mask-image: url('/icons/streamline/transfer.svg'); }
+.finance-cards { mask-image: url('/icons/streamline/cards.svg'); -webkit-mask-image: url('/icons/streamline/cards.svg'); }
+.finance-bank { mask-image: url('/icons/streamline/bank.svg'); -webkit-mask-image: url('/icons/streamline/bank.svg'); }
+.finance-piggy { mask-image: url('/icons/streamline/piggy-bank.svg'); -webkit-mask-image: url('/icons/streamline/piggy-bank.svg'); }
+.finance-document { mask-image: url('/icons/streamline/document.svg'); -webkit-mask-image: url('/icons/streamline/document.svg'); }
+.finance-gift { mask-image: url('/icons/streamline/gift.svg'); -webkit-mask-image: url('/icons/streamline/gift.svg'); }
+.finance-wallet { mask-image: url('/icons/streamline/wallet.svg'); -webkit-mask-image: url('/icons/streamline/wallet.svg'); }
+.finance-alcancia { filter: drop-shadow(0 0 1px currentColor); mask-image: url('/icons/streamline/alcancia.svg'); -webkit-mask-image: url('/icons/streamline/alcancia.svg'); }
+.account-icon .streamline-finance { height: 20px; width: 20px; }
+.offer > span .streamline-finance { height: 25px; width: 25px; }
+.health-page__grid { display: grid; gap: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.health-summary { display: flex; flex-direction: column; gap: 11px; min-height: 220px; }
+.health-summary > span { color: #6338ee; }
+.health-summary b { font-size: 17px; }
+.health-summary p { color: #675f79; font-size: 13px; line-height: 1.55; margin: 0; }
+.health-summary .primary-action { align-self: flex-start; margin-top: auto; padding: 10px 14px; }
+
+@media (max-width: 560px) { .health-page__grid { grid-template-columns: 1fr; } }
+
+/* Portal and login share the same 1080px content rail. */
+.banking-shell .portal-header { padding-left: max(28px, calc((100% - 1080px) / 2)) !important; padding-right: max(28px, calc((100% - 1080px) / 2)) !important; }
+.banking-shell .portal-header .portal-brand img { display: block; flex: 0 0 auto !important; height: 34px !important; max-width: none; width: auto !important; }
+.banking-shell .portal-home, .banking-shell .page { max-width: 1080px !important; padding-left: 0 !important; padding-right: 0 !important; width: calc(100% - 56px) !important; }
+.banking-shell .portal-header nav button.active[aria-current="page"] { background: var(--azzu-primary); }
+.banking-shell .portal-header .profile .avatar { background: var(--azzu-primary); }
+@media (max-width: 560px) {
+	.banking-shell .portal-header { padding-left: 18px !important; padding-right: 18px !important; }
+	.banking-shell .portal-header .portal-brand img { height: 29px !important; }
+	.banking-shell .portal-home, .banking-shell .page { width: calc(100% - 36px) !important; }
+	.banking-shell .portal-header__tools > button:first-child { display: inline-flex !important; }
+}

@@ -1,0 +1,27 @@
+import { Routes } from '@angular/router';
+
+export const PORTAL_ROUTES: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'inicio' },
+  { path: 'inicio', loadComponent: () => import('./pages/home/portal-home.page').then((m) => m.PortalHomePageComponent), title: 'Inicio | Azzu' },
+  { path: 'operaciones', loadComponent: () => import('./pages/operations/operations.page').then((m) => m.OperationsPageComponent), title: 'Operaciones | Azzu' },
+  { path: 'operaciones/transferencias', loadComponent: () => import('./pages/transfers/transfers.page').then((m) => m.TransfersPageComponent), title: 'Transferencias | Azzu' },
+  { path: 'operaciones/pagos', loadComponent: () => import('./pages/payments/payments.page').then((m) => m.PaymentsPageComponent), title: 'Pagos | Azzu' },
+  { path: 'operaciones/movimientos', loadComponent: () => import('./pages/movements/movements.page').then((m) => m.MovementsPageComponent), title: 'Movimientos | Azzu' },
+  { path: 'tramites', loadComponent: () => import('./pages/procedures/procedures.page').then((m) => m.ProceduresPageComponent), title: 'Trámites | Azzu' },
+  { path: 'productos', loadComponent: () => import('./pages/products/products.page').then((m) => m.ProductsPageComponent), title: 'Productos | Azzu' },
+  { path: 'productos/cuentas', loadComponent: () => import('./pages/accounts/accounts.page').then((m) => m.AccountsPageComponent), title: 'Cuentas | Azzu' },
+  { path: 'productos/cuentas/:accountId', loadComponent: () => import('./pages/account-detail/account-detail.page').then((m) => m.AccountDetailPageComponent), title: 'Detalle de cuenta | Azzu' },
+  { path: 'productos/tarjetas', loadComponent: () => import('./pages/cards/cards.page').then((m) => m.CardsPageComponent), title: 'Tarjetas | Azzu' },
+  { path: 'productos/prestamos', loadComponent: () => import('./pages/loans/loans.page').then((m) => m.LoansPageComponent), title: 'Préstamos | Azzu' },
+  { path: 'finanzas', loadComponent: () => import('./pages/finances/finances.page').then((m) => m.FinancesPageComponent), title: 'Finanzas | Azzu' },
+  { path: 'beneficios', loadComponent: () => import('./pages/benefits/benefits.page').then((m) => m.BenefitsPageComponent), title: 'Beneficios | Azzu' },
+  { path: 'configuracion', loadComponent: () => import('./pages/settings/settings.page').then((m) => m.SettingsPageComponent), title: 'Configuración | Azzu' },
+  { path: 'configuracion/perfil', loadComponent: () => import('./pages/profile/profile.page').then((m) => m.ProfilePageComponent), title: 'Mis datos | Azzu' },
+  { path: 'configuracion/seguridad', loadComponent: () => import('./pages/security/security.page').then((m) => m.SecurityPageComponent), title: 'Seguridad | Azzu' },
+  { path: 'configuracion/notificaciones', loadComponent: () => import('./pages/notification-settings/notification-settings.page').then((m) => m.NotificationSettingsPageComponent), title: 'Notificaciones | Azzu' },
+  { path: 'transferencias', redirectTo: 'operaciones/transferencias', pathMatch: 'full' },
+  { path: 'pagos', redirectTo: 'operaciones/pagos', pathMatch: 'full' },
+  { path: 'tarjetas', redirectTo: 'productos/tarjetas', pathMatch: 'full' },
+  { path: 'prestamos', redirectTo: 'productos/prestamos', pathMatch: 'full' },
+  { path: '**', redirectTo: 'inicio' },
+];

@@ -1,0 +1,53 @@
+<main class="access-page">
+  <header class="access-header">
+    <a class="brand" routerLink="/auth" aria-label="Azzu, inicio"><img src="/azzu-logo.svg" alt="Azzu"></a>
+    <a class="public-link" href="https://azzu.tech">Ir a azzu.tech <svg lucideArrowRight [size]="17"></svg></a>
+  </header>
+
+  <section class="access-content" aria-label="Acceso a banca por internet">
+    <section class="login-card" aria-labelledby="login-title">
+      <div class="login-card__heading"><p class="eyebrow">Banca por internet</p><h1 id="login-title">Hola, qué bueno verte.</h1><p>Ingresa tus datos para acceder a tu banca Azzu.</p></div>
+      @if (sessionMessage) { <p class="session-message" role="status">{{ sessionMessage }}</p> }
+      @if (federatedLogin) {
+        <div class="federated-access">
+          <p>Te llevaremos al acceso seguro de Azzu para verificar tu identidad. Tus credenciales nunca son procesadas por esta página.</p>
+          <div class="login-actions"><button class="submit" type="button" [disabled]="isSubmitting()" (click)="startSecureLogin()">{{ isSubmitting() ? 'Abriendo acceso seguro…' : 'Ingresar de forma segura' }} <svg lucideChevronRight [size]="16"></svg></button><p class="help-line">¿Aún no tienes una cuenta? <a href="https://azzu.tech">Conoce Azzu</a></p></div>
+        </div>
+      } @else {
+      <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
+        <label for="document-type">Tipo de documento</label>
+        <select id="document-type" class="document-type-select" [value]="documentType()" (change)="changeDocumentType($event)"><option value="DNI">DNI</option><option value="CE">Carnet de extranjería</option><option value="PASSPORT">Pasaporte</option></select>
+        <label for="document-number">Número de documento</label>
+        <div class="document-field"><input id="document-number" type="text" [attr.inputmode]="documentInputMode()" autocomplete="username" [attr.minlength]="documentMinLength()" [attr.maxlength]="documentMaxLength()" formControlName="documentNumber" (input)="sanitizeDocumentNumber($event)" [attr.aria-invalid]="documentNumberInvalid()" [attr.aria-describedby]="documentNumberInvalid() ? 'document-number-error' : null" [class.invalid]="documentNumberInvalid()" [placeholder]="documentPlaceholder()"></div>
+        @if (documentNumberInvalid()) { <p class="field-error" id="document-number-error" role="alert">Revisa el formato del {{ documentTypeName() }}.</p> }
+        <label for="digital-key">Clave digital</label>
+        <div class="password-field" [class.invalid]="digitalKeyInvalid()">
+          <input id="digital-key" type="password" inputmode="none" autocomplete="off" readonly maxlength="6" formControlName="digitalKey" (input)="keepOnlyDigits($event)" (focus)="openKeypad()" (click)="openKeypad()" (copy)="$event.preventDefault()" (cut)="$event.preventDefault()" [attr.aria-invalid]="digitalKeyInvalid()" [attr.aria-describedby]="digitalKeyInvalid() ? 'digital-key-error' : null" [class.invalid]="digitalKeyInvalid()">
+          <span class="digit-sequence" aria-hidden="true">@for (digitIndex of [0, 1, 2, 3, 4, 5]; track digitIndex) { <span class="digit-slot">{{ loginForm.controls.digitalKey.value[digitIndex] ? '•' : '' }}</span> }</span>
+          @if (keypadOpen()) { <div class="secure-keypad" role="group" aria-label="Teclado numérico para clave digital"><div class="secure-keypad__grid">@for (digit of keypadDigits(); track $index) { <button type="button" (click)="enterDigitalKeyDigit(digit)">{{ digit }}</button> }<button class="keypad-delete" type="button" (click)="deleteDigitalKeyDigit()" aria-label="Borrar último dígito"><svg lucideDelete [size]="20"></svg></button></div></div> }
+        </div>
+        @if (digitalKeyInvalid()) { <p class="field-error" id="digital-key-error" role="alert">La clave digital debe contener exactamente 6 dígitos.</p> }
+        @if (loginError()) { <p class="field-error" role="alert">{{ loginError() }}</p> }
+        <div class="form-options"><a href="mailto:soporte@azzu.tech">¿Olvidaste tu clave?</a></div>
+        <div class="login-actions"><button class="submit" type="submit" [disabled]="isSubmitting()">{{ isSubmitting() ? 'Verificando acceso…' : 'Ingresar' }} <svg lucideChevronRight [size]="16"></svg></button><p class="help-line">¿Aún no tienes una cuenta? <a href="https://azzu.tech">Conoce Azzu</a></p></div>
+      </form>
+      }
+    </section>
+
+    <aside class="auth-visual" aria-label="Descubre Azzu">
+      <img class="auth-visual__image" src="/assets/illustrations/auth-imagen.webp" alt="Conoce Azzu">
+    </aside>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <a class="footer-brand" href="https://azzu.tech" aria-label="Azzu"><img src="/azzu-logo.svg" alt="Azzu"></a>
+      <a class="footer-website" href="https://azzu.tech" target="_blank" rel="noopener noreferrer">azzu.tech</a>
+    </div>
+    <div class="footer-details">
+      <a href="mailto:soporte@azzu.tech">soporte@azzu.tech</a>
+      <a routerLink="/auth">Acceso a banca</a>
+    </div>
+    <small class="footer-copyright">© 2026 Azzu</small>
+  </footer>
+</main>
